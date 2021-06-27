@@ -14,7 +14,6 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/rs/cors"
 	log "github.com/sirupsen/logrus"
-	"github.com/rs/cors"
 )
 
 var db, _ = gorm.Open("mysql", "root:root@/todolist?charset=utf8&parseTime=True&loc=Local")
@@ -134,7 +133,7 @@ func main() {
 	router.HandleFunc("/todo/{id}", UpdateItem).Methods("POST")
 	router.HandleFunc("/todo/{id}", DeleteItem).Methods("DELETE")
 	handler := cors.New(cors.Options{
-		AllowedMethods: []string{"GET", "POST", "DELETE", "PATCH", "OPTIONS"}
+		AllowedMethods: []string{"GET", "POST", "DELETE", "PATCH", "OPTIONS"},
 	}).Handler(router)
 	http.ListenAndServe(":8000", handler)
 }
